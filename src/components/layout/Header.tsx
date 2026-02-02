@@ -4,6 +4,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Phone, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import logo from "@/assets/Group-1.png";
+import kitchenImg from "@/assets/kitchen-detail.jpg";
+import wardrobeImg from "@/assets/wardrobe.jpg";
+import livingRoomImg from "@/assets/living-room.jpg";
+import factoryImg from "@/assets/factory.jpg";
 
 const navLinks = [
   { name: "Home", path: "/" },
@@ -15,11 +19,11 @@ const navLinks = [
 ];
 
 const productDropdownItems = [
-  { name: "Kitchen", path: "/products/kitchen" },
-  { name: "Wardrobe", path: "/products/wardrobe" },
-  { name: "Living Room", path: "/products/living" },
-  { name: "TV Units", path: "/products/tv-units" },
-  { name: "Vanities", path: "/products/vanities" },
+  { name: "Kitchen", path: "/products/kitchen", image: kitchenImg },
+  { name: "Wardrobe", path: "/products/wardrobe", image: wardrobeImg },
+  { name: "Living Room", path: "/products/living", image: livingRoomImg },
+  { name: "TV Units", path: "/products/tv-units", image: factoryImg },
+  { name: "Vanities", path: "/products/vanities", image: factoryImg },
 ];
 
 const Header = () => {
@@ -103,15 +107,22 @@ const Header = () => {
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, y: -10 }}
                           transition={{ duration: 0.2 }}
-                          className="absolute top-full left-0 mt-2 bg-background border border-border rounded-lg shadow-lg py-2 min-w-[200px]"
+                          className="absolute top-full left-0 mt-2 bg-background border border-border rounded-lg shadow-lg py-2 min-w-[280px]"
                         >
                           {productDropdownItems.map((item) => (
                             <Link
                               key={item.path}
                               to={item.path}
-                              className={`block px-4 py-2 text-sm hover:bg-accent/10 transition-colors ${location.pathname === item.path ? "text-accent font-medium" : "text-foreground"}`}
+                              className={`flex items-center gap-3 px-4 py-3 text-sm hover:bg-accent/10 transition-colors ${location.pathname === item.path ? "text-accent font-medium bg-accent/5" : "text-foreground"}`}
                             >
-                              {item.name}
+                              <div className="w-12 h-12 rounded-lg overflow-hidden flex-shrink-0">
+                                <img 
+                                  src={item.image} 
+                                  alt={item.name}
+                                  className="w-full h-full object-cover"
+                                />
+                              </div>
+                              <span className="font-medium">{item.name}</span>
                             </Link>
                           ))}
                         </motion.div>
@@ -201,13 +212,20 @@ const Header = () => {
                               <Link
                                 key={item.path}
                                 to={item.path}
-                                className={`block py-2 text-sm hover:text-accent transition-colors ${location.pathname === item.path ? "text-accent font-medium" : "text-muted-foreground"}`}
+                                className={`flex items-center gap-3 py-3 text-sm hover:text-accent transition-colors ${location.pathname === item.path ? "text-accent font-medium" : "text-muted-foreground"}`}
                                 onClick={() => {
                                   setIsMobileMenuOpen(false);
                                   setIsProductsDropdownOpen(false);
                                 }}
                               >
-                                {item.name}
+                                <div className="w-10 h-10 rounded-lg overflow-hidden flex-shrink-0">
+                                  <img 
+                                    src={item.image} 
+                                    alt={item.name}
+                                    className="w-full h-full object-cover"
+                                  />
+                                </div>
+                                <span>{item.name}</span>
                               </Link>
                             ))}
                           </motion.div>

@@ -78,6 +78,28 @@ export default {
           DEFAULT: "hsl(var(--cream))",
           dark: "hsl(var(--cream-dark))",
         },
+        sage: {
+          DEFAULT: "hsl(var(--sage))",
+          light: "hsl(var(--sage-light))",
+          dark: "hsl(var(--sage-dark))",
+        },
+        "warm-gray": {
+          DEFAULT: "hsl(var(--warm-gray))",
+          light: "hsl(var(--warm-gray-light))",
+          dark: "hsl(var(--warm-gray-dark))",
+        },
+      },
+      backgroundImage: {
+        'gradient-gold': 'linear-gradient(135deg, hsl(var(--gold)), hsl(var(--gold-dark)))',
+        'gradient-sage': 'linear-gradient(135deg, hsl(var(--sage)), hsl(var(--sage-dark)))',
+        'gradient-warm': 'linear-gradient(135deg, hsl(var(--gold-light)), hsl(var(--sage-light)))',
+      },
+      boxShadow: {
+        'soft': '0 10px 40px -10px rgba(0, 0, 0, 0.08)',
+        'medium': '0 20px 40px -12px rgba(0, 0, 0, 0.15)',
+        'strong': '0 30px 60px -15px rgba(0, 0, 0, 0.25)',
+        'gold': '0 20px 40px -10px hsl(var(--gold) / 0.3)',
+        'sage': '0 20px 40px -10px hsl(var(--sage) / 0.3)',
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -113,6 +135,10 @@ export default {
           "0%, 100%": { transform: "translateY(0)" },
           "50%": { transform: "translateY(-10px)" },
         },
+        "glow": {
+          "from": { boxShadow: "0 0 20px hsl(var(--gold) / 0.3)" },
+          "to": { boxShadow: "0 0 30px hsl(var(--gold) / 0.6)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -122,6 +148,7 @@ export default {
         "fade-in-right": "fade-in-right 0.6s ease-out forwards",
         "scale-in": "scale-in 0.4s ease-out forwards",
         "float": "float 3s ease-in-out infinite",
+        "glow": "glow 2s ease-in-out infinite alternate",
       },
     },
   },
