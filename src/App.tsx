@@ -7,7 +7,11 @@ import Index from "./pages/Index";
 import About from "./pages/About";
 import Products from "./pages/Products";
 import Kitchen from "./pages/Kitchen";
+import KitchenClassic from "./pages/KitchenClassic";
+import KitchenEco from "./pages/KitchenEco";
 import Wardrobe from "./pages/Wardrobe";
+import WardrobeSlido from "./pages/WardrobeSlido";
+import WardrobeFlipo from "./pages/WardrobeFlipo";
 import Living from "./pages/Living";
 import TvUnits from "./pages/TvUnits";
 import Vanities from "./pages/Vanities";
@@ -32,7 +36,11 @@ const App = () => (
           <Route path="/about" element={<About />} />
           <Route path="/products" element={<Products />} />
           <Route path="/products/kitchen" element={<Kitchen />} />
+          <Route path="/products/kitchen/classic" element={<KitchenClassic />} />
+          <Route path="/products/kitchen/eco" element={<KitchenEco />} />
           <Route path="/products/wardrobe" element={<Wardrobe />} />
+          <Route path="/products/wardrobe/slido" element={<WardrobeSlido />} />
+          <Route path="/products/wardrobe/flipo" element={<WardrobeFlipo />} />
           <Route path="/products/living" element={<Living />} />
           <Route path="/products/tv-units" element={<TvUnits />} />
           <Route path="/products/vanities" element={<Vanities />} />
