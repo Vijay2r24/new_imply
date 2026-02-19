@@ -39,7 +39,7 @@ const Header = () => {
   const [isAdminModalOpen, setIsAdminModalOpen] = useState(false);
   const [hoveredCategory, setHoveredCategory] = useState<string | null>(null);
   const location = useLocation();
-  const isHome = location.pathname === "/" || location.pathname === "/choose-imly";
+  const isHome = location.pathname === "/" || location.pathname === "/choose-imly" || location.pathname.startsWith("/products/");
   const textColorClass = isHome && !isScrolled ? "text-white" : "text-foreground";
 
   useEffect(() => {
