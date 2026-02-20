@@ -4,6 +4,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Phone, ChevronDown, Settings, UserCog } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import logo from "@/assets/Group-1.png";
+import kitchenImg from "@/assets/hero-kitchen.jpg";
+import wardrobeImg from "@/assets/wardrobe.jpg";
+import livingRoomImg from "@/assets/living-room.jpg";
 
 const navLinks = [
   { name: "Home", path: "/" },
@@ -18,17 +21,23 @@ const productDropdownItems = [
   { 
     name: "Kitchen", 
     path: "/products/kitchen",
-    subcategories: ["Classic", "Eco"]
+    subcategories: ["Classic", "Eco"],
+    description: "Modern & functional designs",
+    image: kitchenImg
   },
   { 
     name: "Wardrobe", 
     path: "/products/wardrobe",
-    subcategories: ["Slido", "Flipo"]
+    subcategories: ["Slido", "Flipo"],
+    description: "Smart storage solutions",
+    image: wardrobeImg
   },
   { 
     name: "Living Room", 
     path: "/products/living",
-    subcategories: []
+    subcategories: [],
+    description: "Elegant living spaces",
+    image: livingRoomImg
   },
 ];
 
@@ -153,39 +162,60 @@ const Header = () => {
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, y: -10 }}
                           transition={{ duration: 0.2 }}
-                          className="absolute top-full left-0 mt-2 bg-background/95 backdrop-blur-md border border-border rounded-2xl shadow-2xl overflow-hidden"
+                          className="absolute top-full left-0 mt-2 bg-background/95 backdrop-blur-md border border-border rounded-xl shadow-2xl overflow-hidden"
                         >
                           <div className="flex">
                             {/* Left Side - Categories */}
-                            <div className="w-56 bg-gradient-to-br from-gold/10 to-gold/5">
+                            <div className="w-52 bg-gradient-to-br from-gold/10 to-gold/5">
                               {productDropdownItems.map((item, idx) => (
                                 <Link
                                   key={item.path}
                                   to={item.path}
                                   onMouseEnter={() => setHoveredCategory(item.name)}
-                                  className={`flex items-center justify-between px-6 py-5 transition-all duration-200 ${
+                                  className={`flex items-center gap-3 px-4 py-3 transition-all duration-200 ${
                                     idx !== productDropdownItems.length - 1 ? 'border-b border-gold/10' : ''
                                   } ${
                                     hoveredCategory === item.name 
-                                      ? 'bg-gold/20 text-gold' 
-                                      : 'text-foreground hover:bg-gold/10'
+                                      ? 'bg-gold/20' 
+                                      : 'hover:bg-gold/10'
                                   }`}
                                 >
-                                  <span className="font-semibold text-lg">
-                                    {item.name}
-                                  </span>
-                                  {item.subcategories.length > 0 && (
-                                    <ChevronDown className={`w-5 h-5 -rotate-90 transition-colors ${
-                                      hoveredCategory === item.name ? 'text-gold' : 'text-muted-foreground'
-                                    }`} />
-                                  )}
+                                  {/* Category Image */}
+                                  <div className="w-12 h-12 rounded-lg overflow-hidden flex-shrink-0 ring-1 ring-gold/20">
+                                    <img 
+                                      src={item.image} 
+                                      alt={item.name}
+                                      className="w-full h-full object-cover"
+                                    />
+                                  </div>
+                                  
+                                  {/* Category Info */}
+                                  <div className="flex-1 min-w-0">
+                                    <div className="flex items-center justify-between gap-2">
+                                      <span className={`font-semibold text-sm transition-colors ${
+                                        hoveredCategory === item.name ? 'text-gold' : 'text-foreground'
+                                      }`}>
+                                        {item.name}
+                                      </span>
+                                      {item.subcategories.length > 0 && (
+                                        <ChevronDown className={`w-4 h-4 -rotate-90 flex-shrink-0 transition-colors ${
+                                          hoveredCategory === item.name ? 'text-gold' : 'text-muted-foreground'
+                                        }`} />
+                                      )}
+                                    </div>
+                                    <span className={`text-xs mt-0.5 block transition-colors ${
+                                      hoveredCategory === item.name ? 'text-gold/80' : 'text-muted-foreground'
+                                    }`}>
+                                      {item.description}
+                                    </span>
+                                  </div>
                                 </Link>
                               ))}
                             </div>
 
                             {/* Right Side - Subcategories */}
-                            <div className="w-56 bg-gradient-to-br from-[#B8956A] to-[#A67C52] p-8 flex flex-col justify-center">
-                              <div className="space-y-8">
+                            <div className="w-36 bg-gradient-to-br from-[#B8956A] to-[#A67C52] p-6 flex flex-col justify-center">
+                              <div className="space-y-6">
                                 {hoveredCategory && productDropdownItems
                                   .find(item => item.name === hoveredCategory)
                                   ?.subcategories.map((sub, idx, arr) => (
@@ -194,12 +224,12 @@ const Header = () => {
                                         to={`${productDropdownItems.find(item => item.name === hoveredCategory)?.path}/${sub.toLowerCase()}`}
                                         className="block text-center group"
                                       >
-                                        <span className="text-3xl font-bold text-white group-hover:text-white/80 transition-colors drop-shadow-lg">
+                                        <span className="text-xl font-bold text-white group-hover:text-white/80 transition-colors drop-shadow-lg">
                                           {sub}
                                         </span>
                                       </Link>
                                       {idx < arr.length - 1 && (
-                                        <hr className="mt-8 border-t border-white/30" />
+                                        <hr className="mt-6 border-t border-white/30" />
                                       )}
                                     </div>
                                   ))}
@@ -373,7 +403,7 @@ const Header = () => {
               {/* Admin Buttons */}
               <div className="space-y-4">
                 <button
-                  onClick={() => handleAdminNavigation('https://admin1.imly.com')}
+                  onClick={() => handleAdminNavigation('https://im-qa.b2yinfy.com')}
                   className="w-full p-4 rounded-2xl bg-gradient-to-r from-gold/10 to-gold/5 border border-gold/20 hover:border-gold/40 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg group"
                 >
                   <div className="flex items-center gap-4">
@@ -393,7 +423,7 @@ const Header = () => {
                 </button>
 
                 <button
-                  onClick={() => handleAdminNavigation('https://admin2.imly.com')}
+                  onClick={() => handleAdminNavigation('https://imlystudio.com')}
                   className="w-full p-4 rounded-2xl bg-gradient-to-r from-sage/10 to-sage/5 border border-sage/20 hover:border-sage/40 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg group"
                 >
                   <div className="flex items-center gap-4">
@@ -402,7 +432,7 @@ const Header = () => {
                     </div>
                     <div className="text-left flex-1">
                       <h3 className="font-bold text-foreground mb-1">
-                        Admin Panel 2
+                        website
                       </h3>
                       <p className="text-sm text-muted-foreground">
                         Secondary management system
